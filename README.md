@@ -4,7 +4,7 @@
 Product Manager: @reikamoon \
 Design Lead: @angelinaolmedo7 \
 Front End Lead: @liyaSileshi \
-Back End Lead: @makemesenpai \
+Back End Lead: @makemesenpai
 
-:tea: Features :tea:
+:tea: Features :tea: \
 An educational game that teaches Chemistry.
