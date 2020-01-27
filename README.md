@@ -7,4 +7,6 @@ Front End Lead: [@liyaSileshi](https://github.com/liyaSileshi) \
 Back End Lead: [@makemesenpai](https://github.com/makemesenpai)
 
 :tea: Features :tea: \
-An educational game that teaches Chemistry.
+An educational game that teaches Chemistry. \
+
+:open_file_folder: Resources :open_file_folder: \
