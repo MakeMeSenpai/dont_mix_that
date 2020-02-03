@@ -1,27 +1,30 @@
 body {
-    height: 1800px;
+    /* height: 1800px; */
     background: linear-gradient(#0066cc 0%, #66b3ff 51%,  #99ccff 75%);
+    font-family: helvetica;
+    font-size: 16px;
   }
   /* Fonts */
   p {
-    font-family:Arial, Verdana, sans-serif;
+    /* font-family:Arial, Verdana, sans-serif; */
   }
   h1 {
-    font-family:Verdana, Arial, sans-serif;
+    /* font-family:Verdana, Arial, sans-serif; */
     font-size: 50px;
     font-weight: bold;
     color: #000000;
   }
 
   h2 {
-    font-family:Verdana, Arial, sans-serif;
+    /* font-family:Verdana, Arial, sans-serif; */
     font-size: 40px;
     font-weight: bold;
     color: black;
   }
 
   .title{
-    padding-left: 40%;
+    padding-left: 25%;
+    font-size: 6em;
   }
 
   .character{
