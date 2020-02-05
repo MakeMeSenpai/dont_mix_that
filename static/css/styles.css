@@ -1,7 +1,7 @@
 body {
     /* height: 1800px; */
     background: linear-gradient(#0066cc 0%, #66b3ff 51%,  #99ccff 75%);
-    font-family: helvetica;
+    font-family: Noteworthy, helvetica;
     font-size: 16px;
   }
   /* Fonts */
@@ -36,3 +36,7 @@ body {
     margin-top: 10em;
     padding-left: 2em;
   }
+
+  /* .elts{
+    background-color: yellow;
+  } */
