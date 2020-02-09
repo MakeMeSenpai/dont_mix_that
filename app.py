@@ -1,17 +1,17 @@
 from flask import Flask, render_template, request, redirect, url_for
 from random import randint
 
-#mongodb
-import requests
-from pymongo import MongoClient
-import json
-from bson.objectid import ObjectId
-import os
+# #mongodb
+# import requests
+# from pymongo import MongoClient
+# import json
+# from bson.objectid import ObjectId
+# import os
 
-host = os.environ.get('MONGO_URI', 'MONGODB://LOCALHOST:27017/dontmixthat')
-client = MongoClient(host=f'{host}?retryWrite=false')
-db = client.get_default_database()
-ingredient = db.ingredient
+# host = os.environ.get('MONGO_URI', 'MONGODB://LOCALHOST:27017/dontmixthat')
+# client = MongoClient(host=f'{host}?retryWrite=false')
+# db = client.get_default_database()
+# ingredient = db.ingredient
 
 app = Flask(__name__)
 
@@ -61,14 +61,14 @@ def test():
         return "<h1>Don't Mix That!</h1>" + "<h3>You exploded -trying to mix the unmixable!<h3>"
     return "<h1>Don't Mix That!</h1>" + f"<h3>You mixed <i>{item1}</i> and <i>{item2}</i>, and got <i>{prod}</i></h3>"
 
-@app.route('/mix')
-def mix():
-    #Mix
-    return """<h1>Dont Mix That!</h1> 
-    {% for ingredients in ingredient %}
-        {{ dontmixthat.name }}
-    {% endfor %}
-    """
+# @app.route('/mix')
+# def mix():
+#     #Mix
+#     return """<h1>Dont Mix That!</h1> 
+#     {% for ingredients in ingredient %}
+#         {{ dontmixthat.name }}
+#     {% endfor %}
+#     """
 
 @app.route('/')
 def home():
