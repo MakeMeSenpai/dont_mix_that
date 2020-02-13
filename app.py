@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
 from random import randint
-# from datetime import datetime
 from test import test_concept
 
 
@@ -19,6 +18,8 @@ client = MongoClient(host=f'{host}')
 #grabs our database for our client
 db = client.get_default_database()
 #from database grabs our collections
+use = db.users
+characters = db.characters
 dontmixthat = db.dontmixthat
 recs = db.recipes
 
@@ -42,23 +43,28 @@ def mix():
 @app.route('/book') # methods=['POST'])
 def book():
     #Book - tests our recipies, (should be cleared every run)
-    # time = datetime()
     recipes = recs.find()
-    # if mix in recipe (in this case recipe in recipe), if not in unlocked, append unlocked, display unlocked
-    return render_template('book.html', recipes=recipes)#, time=time)
+    return render_template('book.html', recipes=recipes)
+
+@app.route('/chars')
+def chars():
+    #Char - tests characters
+    users = use.find()
+    chars = characters.find()
+    return render_template('chars.html', characters = chars, users=users)
 
 
 
 """our main routes"""
 @app.route('/')
+def login():
+    #Login
+    return render_template('login.html')
+
+@app.route('/home')
 def home():
     #Home
     return render_template('home.html')
-
-@app.route('/index')
-def index():
-    #Index
-    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
