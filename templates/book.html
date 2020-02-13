@@ -1,5 +1,5 @@
 <h1>Book Boi</h1>
-
+<!--{#
 <h2>Recipes</h2>
 <button type="button">Real Recipe</button>
 <button type="button">Fake Recipe</button>
@@ -7,25 +7,25 @@
 
 
 <h2>Saved Response</h2>
-<!-- Takes response and either posts or rejects it -->
-<!-- return input to python -->
+<!- Takes response and either posts or rejects it ->
+<!- return input to python ->
 {% set input = "Salt Water(NAClH2O)" %}
 {% set unlocked = [] %}
 {% if input not in unlocked %}
     {% unlocked.append(input) or "" %}
     <h3>{{ recipe.name }}</h3>
     <img src="{{ recipe.img }}"></img>
-    <p>{{ recipe.description }} <!--{#| this was discovered:
-    <time datetime="{{ time }}">{{ time }}<time></p> #}-->
+    <p>{{ recipe.description }} <!-{#| this was discovered:
+    <time datetime="{{ time }}">{{ time }}<time></p> #}->
 {% elif unlocked == [] %}
     <h3>Oh No!</h3>
     <p>You don't have any saved recipes! - mix and match
         to get your saved recipies here!</p>
 {% else %}
     <h1>hello world</h1>
-    <!--{# {% for item in unlocked %}
+     {% for item in unlocked %}
         <h3>{{ recipe.name }}</h3>
         <img src="{{ recipe.img }}"></img>
         <p>{{ recipe.description }}</p>
-    {% endfor %} #}-->
-{% endif %}
+    {% endfor %} 
+{% endif %}#}-->
