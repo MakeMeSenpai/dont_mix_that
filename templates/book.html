@@ -17,7 +17,7 @@
     <img src="{{ recipe.img }}"></img>
     <p>{{ recipe.description }} <!--{#| this was discovered:
     <time datetime="{{ time }}">{{ time }}<time></p> #}-->
-{% if unlocked == [] %}
+{% elif unlocked == [] %}
     <h3>Oh No!</h3>
     <p>You don't have any saved recipes! - mix and match
         to get your saved recipies here!</p>
