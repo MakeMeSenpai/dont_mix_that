@@ -12,7 +12,7 @@
 {% set input = "Salt Water(NAClH2O)" %}
 {% set unlocked = [] %}
 {% if input not in unlocked %}
-    {% unlocked.append( ip+":"+input ) or "" %}
+    {% unlocked.append(input) or "" %}
     <h3>{{ recipe.name }}</h3>
     <img src="{{ recipe.img }}"></img>
     <p>{{ recipe.description }} <!--{#| this was discovered:
