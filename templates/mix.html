@@ -1,7 +1,7 @@
 <h1>Dont Mix That!</h1> 
 
 {% for ingredients in ingredient %}
-    <h3>{{ dontmixthat.name }}</h3>
-    <img src="{{ dontmixthat.img }}"></img>
-    <p>{{ dontmixthat.description }}</p>
+    <h3>{{ ingredients.name }}</h3>
+    <img src="{{ ingredients.img }}"></img>
+    <p>{{ ingredients.description }}</p>
 {% endfor %}

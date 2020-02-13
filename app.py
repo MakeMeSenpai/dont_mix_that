@@ -12,8 +12,8 @@ import os
 host = os.environ.get('MONGO_URI', 'mongodb://localhost:27017/dontmixthat')
 client = MongoClient(host=f'{host}?retryWrite=false')
 db = client.get_default_database()
-ingredient = db.ingredient
-
+dontmixthat = db.dontmixthat
+print(dontmixthat)
 # host = os.environ.get('MONGODB_URI', 'mongodb://MakeMeSenpai:password1@ds233268.mlab.com:33268/heroku_3jndmb7c')
 # client = MongoClient(host=f'{host}?retryWrites=false')
 # db = client.get_default_database()
@@ -70,6 +70,7 @@ def test():
 @app.route('/mix')
 def mix():
     #Mix
+    ingredient = dontmixthat.find()
     return render_template('mix.html', ingredient=ingredient)
 
 @app.route('/')
