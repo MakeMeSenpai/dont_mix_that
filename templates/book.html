@@ -1,8 +1,6 @@
 <h1>Book Boi</h1>
 
 <h2>Recipes</h2>
-<!-- return input to python -->
-{% set input = "Salt Water(NAClH2O)" %}
 <button type="button">Real Recipe</button>
 <button type="button">Fake Recipe</button>
 <button type=submit>Submit Nothing</button> 
@@ -10,6 +8,8 @@
 
 <h2>Saved Response</h2>
 <!-- Takes response and either posts or rejects it -->
+<!-- return input to python -->
+{% set input = "Salt Water(NAClH2O)" %}
 {% set unlocked = [] %}
 {% if input not in unlocked %}
     {% unlocked.append(input) %}

@@ -28,7 +28,7 @@ def test_concept():
         prod = "Super Salt"
     elif item1 == "bleach" and item2 == "dirt":
         prod = "Clean Dirt"
-    elif item1 == "dirt" and item2 == "salt":
+    elif item1 == "dirt" and item2 == "dirt":
         prod = "Super Dirt"
     elif item1 == "bleach" and item2 == "water":
         prod = "Mystery Milk"
