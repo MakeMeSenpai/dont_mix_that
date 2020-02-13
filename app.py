@@ -42,12 +42,10 @@ def mix():
 @app.route('/book') # methods=['POST'])
 def book():
     #Book - tests our recipies, (should be cleared every run)
-    unlocked = []
     # time = datetime()
     recipes = recs.find()
     # if mix in recipe (in this case recipe in recipe), if not in unlocked, append unlocked, display unlocked
-    return render_template('book.html', recipes=recipes,
-         unlocked=unlocked)#, time=time)
+    return render_template('book.html', recipes=recipes)#, time=time)
 
 
 

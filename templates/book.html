@@ -9,6 +9,7 @@
 
 <h2>Saved Response</h2>
 <!-- Takes response and either posts or rejects it -->
+{% set unlocked = [] %}
 {% if input not in unlocked %}
     {% unlocked.append(input) %}
     <h3>{{ recipe.name }}</h3>
