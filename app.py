@@ -9,7 +9,7 @@ from bson.objectid import ObjectId
 import os
 
 
-host = os.environ.get('MONGO_URI', 'mongodb://localhost:27017/dontmixthat')
+host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/dontmixthat')
 client = MongoClient(host=f'{host}')
 db = client.get_default_database()
 dontmixthat = db.dontmixthat
