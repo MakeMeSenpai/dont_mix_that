@@ -39,7 +39,7 @@ def mix():
     ingredient = dontmixthat.find()
     return render_template('mix.html', ingredients=ingredient, recipes=recipes)
 
-@app.route('/book', methods=['POST', 'GET'])
+@app.route('/book', methods=['POST'])
 def book():
     #Book - tests our recipies, (should be cleared every run)
     unlocked = []
