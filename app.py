@@ -30,7 +30,7 @@ app = Flask(__name__)
 @app.route('/test')
 def test():
     # Test - tests combination concept
-    test_concept()
+    return test_concept()
 
 @app.route('/mix')
 def mix():

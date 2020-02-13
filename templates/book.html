@@ -13,14 +13,17 @@
     {% unlocked.append(input) %}
     <h3>{{ recipe.name }}</h3>
     <img src="{{ recipe.img }}"></img>
-    <p>{{ recipe.description }}</p>> <!-- | this was discovered:
-    <time datetime="{{ time }}">{{ time }}<time></p> -->
+    <p>{{ recipe.description }}</p> <!--{# | this was discovered:
+    <time datetime="{{ time }}">{{ time }}<time></p> #}-->
 {% elif unlocked == [] %}
     <h3>Oh No!</h3>
     <p>You don't have any saved recipes! - mix and match
         to get your saved recipies here!</p>
 {% else %}
-    {% for item in unlocked %}
-        <h2>hello world</h2>
-    {% endfor %}
+    <h1>hello world</h1>
+    <!--{# {% for item in unlocked %}
+        <h3>{{ recipe.name }}</h3>
+        <img src="{{ recipe.img }}"></img>
+        <p>{{ recipe.description }}</p>
+    {% endfor %} #}-->
 {% endif %}
