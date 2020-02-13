@@ -9,14 +9,18 @@
 
 <h2>Saved Response</h2>
 <!-- Takes response and either posts or rejects it -->
-{% for input in recipes %}
-    {% if input not in unlocked %}
-        <h3>{{ recipe.name }}</h3>
-        <img src="{{ recipe.img }}"></img>
-        <p>{{ recipe.description }} | this was discovered:
-        <time datetime="{{ time }}">{{ time }}<time></p>
-    {% elif unlocked == [] %}
-        <h3>Oh No!</h3>
-        <p>You don't have any saved recipes! - mix and match
-            to get your saved recipies here!</p>
-{% endfor %}
+{% if input not in unlocked %}
+    {% unlocked.append(input) %}
+    <h3>{{ recipe.name }}</h3>
+    <img src="{{ recipe.img }}"></img>
+    <p>{{ recipe.description }}</p>> <!-- | this was discovered:
+    <time datetime="{{ time }}">{{ time }}<time></p> -->
+{% elif unlocked == [] %}
+    <h3>Oh No!</h3>
+    <p>You don't have any saved recipes! - mix and match
+        to get your saved recipies here!</p>
+{% else %}
+    {% for item in unlocked %}
+        <h2>hello world</h2>
+    {% endfor %}
+{% endif %}

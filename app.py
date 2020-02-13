@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from random import randint
-from datetime import datetime
+# from datetime import datetime
 from test import test_concept
 
 
@@ -43,11 +43,11 @@ def mix():
 def book():
     #Book - tests our recipies, (should be cleared every run)
     unlocked = []
-    time = datetime()
+    # time = datetime()
     recipes = recs.find()
     # if mix in recipe (in this case recipe in recipe), if not in unlocked, append unlocked, display unlocked
     return render_template('book.html', recipes=recipes,
-         unlocked=unlocked, time=time)
+         unlocked=unlocked)#, time=time)
 
 
 
