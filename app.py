@@ -72,7 +72,7 @@ def mix():
     #Mix
     recipes = recs.find()
     ingredient = dontmixthat.find()
-    return render_template('mix.html', ingredient=ingredient, recipes=recipes)
+    return render_template('mix.html', ingredients=ingredient, recipes=recipes)
 
 @app.route('/')
 def home():
