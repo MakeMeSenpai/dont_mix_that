@@ -1,7 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for
+from config import Config
 from random import randint
 from test import test_concept
 
+#wtf man
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms.validators import DataRequired
+from forms import LoginForm
 
 #mongodb imports
 import requests
@@ -25,6 +31,7 @@ recs = db.recipes
 
 
 app = Flask(__name__)
+app.config.from_object(Config)
 
 
 """ test routes"""
@@ -53,13 +60,15 @@ def chars():
     chars = characters.find()
     return render_template('chars.html', characters = chars, users=users)
 
-
+############################################################################################################
 
 """our main routes"""
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def login():
-    #Login
-    return render_template('login.html')
+    form = LoginForm()
+    if form.validate_on_submit():
+        return redirect(url_for('home'))
+    return render_template('login.html', title='Sign In', form=form)
 
 @app.route('/home')
 def home():

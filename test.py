@@ -1,4 +1,9 @@
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms.validators import DataRequired
+
 from random import randint
+
 def test_concept():
     z = randint(0, 12) * 2.56
     if z > 20:
