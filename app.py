@@ -65,6 +65,7 @@ def chars():
 """our main routes"""
 @app.route('/', methods=['GET', 'POST'])
 def login():
+    #Login
     form = LoginForm()
     if form.validate_on_submit():
         return redirect(url_for('home'))
@@ -73,7 +74,36 @@ def login():
 @app.route('/home')
 def home():
     #Home
-    return render_template('home.html')
+    users = use.find()
+    return render_template('home.html', users=users)
+
+@app.route('/play')
+def play():
+    #Play
+    return render_template('play.html')
+
+@app.route('/trade')
+def trade():
+    #Trade - Comming Soon
+    return render_template('trade.html')
+
+@app.route('/profile')
+def profile():
+    #Profile
+    users = use.find()
+    return render_template('profile.html', users=users)
+
+@app.route('/deck')
+def deck():
+    #Deck
+    users = use.find()
+    return render_template('deck.html', users=users)
+
+@app.route('/recipes')
+def recipes():
+    #recipes
+    users = use.find()
+    return render_template('recipes.html', users=users)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
