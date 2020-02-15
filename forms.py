@@ -8,6 +8,7 @@ class LoginForm(FlaskForm):
     # remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
+# functions might have to go into a models.py file
 #class characterForm(FlaskForm):
 #class collect_cardsForm(FlaskForm):
 #   def display_deck()
