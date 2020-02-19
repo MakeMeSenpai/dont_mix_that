@@ -65,12 +65,16 @@ def chars():
 
 ############################################################################################################
 
-@auth.verify_password
+@auth.verify_password #verifies that the username and password match
 def verify_password(username, password):
-    users = users.find()
+    users = use.find()
     if username in users.username:
         return check_password_hash(users.get(username), password)
     return False
+
+@auth.hash_password #hashes and protects our users passwords
+def hash_pw(password):
+    return hash_password(password)    
 
 """our main routes"""
 @app.route('/', methods=['GET', 'POST'])
@@ -78,7 +82,7 @@ def login():
     #Login
     form = LoginForm()
     if form.validate_on_submit(): #checks that input follows forms rules
-        if verify_password(): #checks if password and username match
+        if verify_password(form.username._value, form.password._value): #checks if password and username match
         #question? how to get info from form to python?
             return redirect(url_for('home'))
             #question? how to get user info threwout app after they login?
