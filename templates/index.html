@@ -1,9 +1,43 @@
 {% extends 'base.html' %}
+<style>
+.bg {
+  background-image: url('static/images/tempbg.jpg');
+}
+.logofont {
+  font-family: Noteworthy, Verdana, Arial, sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+.character{
+  margin-top: 4em;
+  margin-left: 4em;
+}
+.character2{
+  margin-top: 4em;
+  margin-left: 3em;
+}
+.character3{
+  margin-top: 4em;
+  margin-left: 2em;
+}
+.character4{
+  margin-top: 4em;
+  margin-left: 2em;
+}
+</style>
 {% block content %}
-<h1> Welcome to Don't mix it </h1>
-<h2>Choose your avatar</h2>
-<button>Alchemist</button>
-<button>Mad Scientist</button>
-<button>Witch</button>
-<button>Chef</button>
+<br>
+<br>
+<center>
+<font size="8">Don't Mix That!</font>
+<br>
+<font size="7">Choose your character:</font>
+<br>
+<br>
+  <a href='/' title="baby"><img class= 'character' src="static/images/dontmixthat-alchemist.png" height = '400' width= 'auto' alt="alchemist"</a>
+  <a href='/' title="Selena"><img class= 'character2' src="static/images/dontmixthat-madscientist.png" height = '500' width= 'auto' alt="madscientist"</a>
+  <a href='/' title="Astra"><img class= 'character3' src="static/images/dontmixthat-witch.png" height = '500' width= 'auto' alt="witch"</a>
+  <a href='/' title="Cheffery"><img class= 'character4' src="static/images/dontmixthat-chef.png" height = '500' width= 'auto' alt="Chef"</a>
+  </center>
 {% endblock %}
