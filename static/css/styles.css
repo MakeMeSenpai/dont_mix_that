@@ -15,6 +15,12 @@ body {
     /* font-family:Arial, Verdana, sans-serif; */
   }
 
+  .sidebar {
+    width:25%;
+    right:0;
+     /* background-color: rgb(214, 72, 96); */
+  }
+
   h1 {
     /* font-family:Verdana, Arial, sans-serif; */
     font-size: 50px;
