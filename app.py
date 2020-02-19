@@ -1,4 +1,6 @@
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, render_template, request, redirect, url_for
+from flask_httpauth import HTTPBasicAuth
 from config import Config
 from random import randint
 from test import test_concept
@@ -30,6 +32,7 @@ dontmixthat = db.dontmixthat
 recs = db.recipes
 
 
+auth = HTTPBasicAuth()
 app = Flask(__name__)
 app.config.from_object(Config)
 
@@ -62,44 +65,61 @@ def chars():
 
 ############################################################################################################
 
+@auth.verify_password
+def verify_password(username, password):
+    users = users.find()
+    if username in users.username:
+        return check_password_hash(users.get(username), password)
+    return False
+
 """our main routes"""
 @app.route('/', methods=['GET', 'POST'])
 def login():
     #Login
     form = LoginForm()
-    if form.validate_on_submit():
-        return redirect(url_for('home'))
+    if form.validate_on_submit(): #checks that input follows forms rules
+        if verify_password(): #checks if password and username match
+        #question? how to get info from form to python?
+            return redirect(url_for('home'))
+            #question? how to get user info threwout app after they login?
+    #else render login page   
     return render_template('login.html', title='Sign In', form=form)
 
 @app.route('/home')
+# @auth.login_required #requires you to log in before you can see this page
 def home():
     #Home
     users = use.find()
     return render_template('home.html', users=users)
 
 @app.route('/play')
+# @auth.login_required
 def play():
     #Play
     return render_template('play.html')
 
 @app.route('/trade')
+# @auth.login_required
 def trade():
     #Trade - Comming Soon
     return render_template('trade.html')
 
 @app.route('/profile')
+# @auth.login_required
 def profile():
     #Profile
     users = use.find()
     return render_template('profile.html', users=users)
 
 @app.route('/deck')
+# @auth.login_required
 def deck():
     #Deck
     users = use.find()
     return render_template('deck.html', users=users)
 
 @app.route('/recipes')
+# @auth.login_required
 def recipes():
     #recipes
     users = use.find()
