@@ -9,7 +9,7 @@ from test import test_concept
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired
-from forms import LoginForm
+from forms import LoginForm, PlayForm
 
 #mongodb imports
 import requests
@@ -67,14 +67,15 @@ def chars():
 
 @auth.verify_password #verifies that the username and password match
 def verify_password(username, password):
-    users = use.find()
-    if username in users.username:
-        return check_password_hash(users.get(username), password)
+    user = use.find_one(filter={"username":username})
+    p_hash = generate_password_hash(password)
+    if user: #if user can be found then check password
+        return check_password_hash(p_hash, user.password)
     return False
 
 @auth.hash_password #hashes and protects our users passwords
 def hash_pw(password):
-    return hash_password(password)    
+    return generate_password_hash(password)    
 
 """our main routes"""
 @app.route('/', methods=['GET', 'POST'])
@@ -82,7 +83,7 @@ def login():
     #Login
     form = LoginForm()
     if form.validate_on_submit(): #checks that input follows forms rules
-        if verify_password(form.username._value, form.password._value): #checks if password and username match
+        if verify_password(form.username._value(), form.password._value()): #checks if password and username match
         #question? how to get info from form to python?
             return redirect(url_for('home'))
             #question? how to get user info threwout app after they login?
@@ -96,11 +97,23 @@ def home():
     users = use.find()
     return render_template('home.html', users=users)
 
-@app.route('/play')
+@app.route('/play', methods=['GET', 'POST'])
 # @auth.login_required
-def play():
+def play(): #make forms for /play
+    # talk to front end about forms play.html
     #Play
-    return render_template('play.html')
+    choices = ["salt", "water", "dirt", "bleach", "lean"]
+    form = PlayForm()
+    if form.validate_on_submit():
+        cards = [form.card1._value(),form.card2._value()]
+        cards.sort()
+        cards = ",".join(cards).lower()
+        print(cards)
+        recipe = recs.find_one(filter={"combo":cards})
+        if recipe:
+            print("Success") # add user unlocked value equal to recipe if not in unlocked
+            return redirect(url_for("home"))
+    return render_template('play.html', choices=choices)
 
 @app.route('/trade')
 # @auth.login_required
