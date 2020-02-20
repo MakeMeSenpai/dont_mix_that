@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Your Cards!</h1>
+    {% for card in users.deck %}
+        <h2>{{ card }}</h2>
+    {% endfor %}
+    <h3><a href="/profile">Go Back!</a></h3>
+{% endblock %}
