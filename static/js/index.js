@@ -1,31 +1,51 @@
 let all_elts = Array.from(document.querySelectorAll("a.elts"))
 const doneBtn = document.querySelector('button.doneBtn')
 const replay = document.getElementById('replay')
-let score = 0
-doneBtn.addEventListener('click', done)
+let mix = [];
+// doneBtn.addEventListener('click', done)
+doneBtn.addEventListener('click', game)
 replay.addEventListener('click', playAgain)
 
-function check(){
+let recipeBook = {
+  'saltwater': 'saltwater', 
+  'alcoholbleach': 'Chlorform',
+  'bleachvinegar': 'Toxic Chlorine Gas',
+  'ammoniableach': 'Toxic Chloramine Vapors',
+  'hydrogenperoxidevinegar': 'Peracetic Acid',
+  'sodiumchlorine': 'Salt'
+}
+
+function checkSelect(){
   all_elts.forEach(elt => elt.addEventListener('click', () => {
     console.log(elt)
     elt.style.backgroundColor = 'pink'; 
-    score += parseInt(elt.getAttribute('data-points'))
-    console.log(score)
+    mix.push(elt.getAttribute('id'))
+    console.log(mix)
   }))
-  }
+}
 
-function done(){
-  if (score >= 100){
+function game(){
+  //will have the game logic 
+  const ab = mix[0] + mix[1] //changes the array index to mixed strings
+  const ba = mix[1] + mix[0] //changes the array index to mixed strings
+  //checks wether either of these two mixes exist in the recipie book
+  const answer = recipeBook[ab] === undefined ? recipeBook[ba] : recipeBook[ab]
+  console.log(answer)
+  done(answer) //call done function to check wether your mixture worked or not
+  return answer
+}
+
+function done(answer){
+  if (answer === null){
+    // alert(`You lose! Score: ${score}`)
+    document.getElementById("overlay").style.display = "block";
+    document.getElementById("message").innerHTML = "You lose!";    
+  }
+  
+  else{
     // alert(`Congrats! Score: ${score}`)
     document.getElementById("overlay").style.display = "block";
     document.getElementById("message").innerHTML = "You win!";
-
-
-  }
-  else{
-    // alert(`You lose! Score: ${score}`)
-    document.getElementById("overlay").style.display = "block";
-    document.getElementById("message").innerHTML = "You lose!";
   }
 }
 
@@ -33,4 +53,4 @@ function playAgain() {
   document.location.reload();
 }
 
-check()
+checkSelect()
