@@ -15,6 +15,9 @@ let recipeBook = {
   'sodiumchlorine': 'Salt'
 }
 
+let newMix = {
+
+}
 function checkSelect(){
   all_elts.forEach(elt => elt.addEventListener('click', () => {
     console.log(elt)
@@ -36,16 +39,16 @@ function game(){
 }
 
 function done(answer){
-  if (answer === null){
-    // alert(`You lose! Score: ${score}`)
+  if (answer == null){
     document.getElementById("overlay").style.display = "block";
-    document.getElementById("message").innerHTML = "You lose!";    
+    document.getElementById("message").innerHTML = `You didn't make anything lethal`;    
   }
   
   else{
     // alert(`Congrats! Score: ${score}`)
     document.getElementById("overlay").style.display = "block";
-    document.getElementById("message").innerHTML = "You win!";
+    document.getElementById("message").innerHTML = `You made ${answer}! Add it to your new mix list?`;
+    
   }
 }
 

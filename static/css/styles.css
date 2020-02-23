@@ -38,6 +38,7 @@ body {
   .title{
     padding-left: 25%;
     font-size: 6em;
+    color: white;
   }
 
   .character{
@@ -79,6 +80,16 @@ body {
   }
 
   #replay{
+    position: absolute;
+    bottom: 30%;
+    left: 50%;
+    font-size: 50px;
+    color: black;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+  }
+
+  #choice{
     position: absolute;
     bottom: 30%;
     left: 50%;
