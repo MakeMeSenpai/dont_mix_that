@@ -18,6 +18,7 @@ let recipeBook = {  //all the chemicals that can be formed with the given recipi
   'hydrogenperoxidevinegar': 'Peracetic Acid',
   'sodiumchlorine': 'Salt'
 }
+
 let userdata = localStorage.getItem("don't_mix_that")
 
 userdata = { //new mix holds the new recipies the user makes
@@ -32,13 +33,14 @@ function addLocal(){
   const json = JSON.stringify(userdata)
   // Save to localStorage
   localStorage.setItem("don't_mix_that", json)
-  
+
 }
 
 function checkSelect(){ //checks wether the element is clicked and adds it into an array
   all_elts.forEach(elt => elt.addEventListener('click', () => {
     console.log(elt)
-    elt.style.backgroundColor = 'pink'; 
+    // elt.style.backgroundColor = 'pink';
+    elt.style.opacity = 0.2;  //when you click an element, change opacity
     mix.push(elt.getAttribute('id'))
     console.log(mix)
   }))
