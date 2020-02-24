@@ -3,8 +3,10 @@ const doneBtn = document.querySelector('button.doneBtn')
 const replay = document.getElementById('replay')
 const yes_add = document.getElementById('yes')
 const no_add = document.getElementById('no')
+const showMix = document.getElementById('showMixes')
 let mix = [];
 let answer;
+let userdata;
 // doneBtn.addEventListener('click', done)
 doneBtn.addEventListener('click', game)
 replay.addEventListener('click', playAgain)
@@ -19,13 +21,16 @@ let recipeBook = {  //all the chemicals that can be formed with the given recipi
   'sodiumchlorine': 'Salt'
 }
 
-let userdata = localStorage.getItem("don't_mix_that")
-
-userdata = { //new mix holds the new recipies the user makes
-  mix: []
+if (localStorage.getItem("don't_mix_that")) {
+  userdata = JSON.parse(localStorage.getItem("don't_mix_that"))
+} else {
+  userdata = { //new mix holds the new recipies the user makes
+    mix: []
+  }
 }
 
-function addLocal(){
+function addLocal(){ //adds it to local storage
+  console.log(userdata)
   console.log(answer)
   userdata.mix.push(answer)
   console.log(userdata)
@@ -33,8 +38,14 @@ function addLocal(){
   const json = JSON.stringify(userdata)
   // Save to localStorage
   localStorage.setItem("don't_mix_that", json)
-
 }
+
+function displayMix(){
+  console.log('########mixes#######')
+  console.log(userdata.mix)
+}
+
+
 
 function checkSelect(){ //checks wether the element is clicked and adds it into an array
   all_elts.forEach(elt => elt.addEventListener('click', () => {
@@ -77,3 +88,4 @@ function playAgain() { //reloads the page for a new game
 }
 
 checkSelect()
+displayMix()
