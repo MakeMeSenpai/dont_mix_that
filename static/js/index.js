@@ -5,6 +5,7 @@ const yes_add = document.getElementById('yes')
 const no_add = document.getElementById('no')
 const showMix = document.getElementById('showMixes')
 const modal = document.getElementById("myModal");
+const body = document.querySelector('body')
 // Get the <span> element that closes the modal
 let span = document.getElementsByClassName("close")[0];
 
@@ -24,6 +25,24 @@ let recipeBook = {  //all the chemicals that can be formed with the given recipi
   'hydrogenperoxidevinegar': 'Peracetic Acid',
   'sodiumchlorine': 'Salt'
 }
+
+let background = JSON.parse(localStorage.getItem("SETTINGS"))
+//changing background of the getAnswer based on the characters
+console.log(background.character)
+if (background.character == 'chef'){
+  body.style.backgroundImage = "url(static/images/background-chef.jpeg)";
+
+}else if (background.character == 'madscientist'){
+  body.style.backgroundImage = "url(static/images/background-scientist.jpeg)";
+
+}else if (background.character == 'alchemist'){
+  body.style.backgroundImage = "url(static/images/background-alchemist.jpeg)";
+
+}else{
+  body.style.backgroundImage = "url(static/images/background-witch.jpeg)";
+}
+
+
 
 if (localStorage.getItem("don't_mix_that")) {
   userdata = JSON.parse(localStorage.getItem("don't_mix_that"))
@@ -63,7 +82,7 @@ function checkSelect(){ //checks wether the element is clicked and adds it into 
 
 function doneButn(){ //when the done button is clicked
   modal.style.display = "block";
-  game()
+ getAnswer()
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -78,8 +97,8 @@ window.onclick = function(event) {
   }
 }
 
-function game(){
-  //will have the game logic 
+function getAnswer(){
+  //will have the getAnswer logic 
   const ab = mix[0] + mix[1] //changes the array index to mixed strings
   const ba = mix[1] + mix[0] //changes the array index to mixed strings
   //checks wether either of these two mixes exist in the recipie book
@@ -101,7 +120,7 @@ function checkDone(answer){ //once the done button is clicked checks win/loss
   }
 }
 
-function playAgain() { //reloads the page for a new game
+function playAgain() { //reloads the page for a new getAnswer
   document.location.reload();
 }
 
