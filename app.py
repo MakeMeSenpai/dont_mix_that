@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 import requests
 
 app = Flask(__name__)
@@ -13,6 +13,9 @@ def game():
 
 @app.route('/mixes')
 def mixed():
+  # d = request.get_json()
+  # print(d) 
+  # return jsonify(d)
   return render_template('mixed.html')
 
 if __name__ == '__main__':

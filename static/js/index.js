@@ -4,6 +4,7 @@ const replay = document.getElementById('replay')
 const yes_add = document.getElementById('yes')
 const no_add = document.getElementById('no')
 const showMix = document.getElementById('showMixes')
+
 let mix = [];
 let answer;
 let userdata;
@@ -43,9 +44,10 @@ function addLocal(){ //adds it to local storage
 function displayMix(){
   console.log('########mixes#######')
   console.log(userdata.mix)
+  console.log(JSON.stringify(userdata.mix[0]))
+  console.log(JSON.stringify({data: userdata.mix[0] }))
+  showMix.innerHTML = JSON.stringify(userdata.mix[0]); 
 }
-
-
 
 function checkSelect(){ //checks wether the element is clicked and adds it into an array
   all_elts.forEach(elt => elt.addEventListener('click', () => {
@@ -86,6 +88,29 @@ function done(answer){ //once the done button is clicked checks win/loss
 function playAgain() { //reloads the page for a new game
   document.location.reload();
 }
+
+
+
+// const str = sendInput.value
+
+// const options = {
+//   method: 'post',
+//   headers: {
+//     'Content-Type': 'application/json'
+//   },
+//   body: JSON.stringify({ data: str })
+// }
+// // Query the /send-data route with fetch
+// fetch('/mixes', options)
+//   .then(function(res){
+//     return res.json()
+//   }).then(function(json){
+//     // Handle the response and display the data received
+//     showMix.innerHTML = json.data
+//   }).catch(function(err) {
+//     console.log(err.message)
+//   })
+
 
 checkSelect()
 displayMix()
