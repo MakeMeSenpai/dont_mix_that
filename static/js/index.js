@@ -4,12 +4,15 @@ const replay = document.getElementById('replay')
 const yes_add = document.getElementById('yes')
 const no_add = document.getElementById('no')
 const showMix = document.getElementById('showMixes')
+const modal = document.getElementById("myModal");
+// Get the <span> element that closes the modal
+let span = document.getElementsByClassName("close")[0];
 
 let mix = [];
 let answer;
 let userdata;
 // doneBtn.addEventListener('click', done)
-doneBtn.addEventListener('click', game)
+doneBtn.addEventListener('click', doneButn)
 replay.addEventListener('click', playAgain)
 yes_add.addEventListener('click', addLocal)
 
@@ -52,11 +55,27 @@ function displayMix(){
 function checkSelect(){ //checks wether the element is clicked and adds it into an array
   all_elts.forEach(elt => elt.addEventListener('click', () => {
     console.log(elt)
-    // elt.style.backgroundColor = 'pink';
     elt.style.opacity = 0.2;  //when you click an element, change opacity
     mix.push(elt.getAttribute('id'))
     console.log(mix)
   }))
+}
+
+function doneButn(){ //when the done button is clicked
+  modal.style.display = "block";
+  game()
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
 }
 
 function game(){
@@ -66,19 +85,16 @@ function game(){
   //checks wether either of these two mixes exist in the recipie book
   answer = recipeBook[ab] === undefined ? recipeBook[ba] : recipeBook[ab]
   console.log(answer)
-  done(answer) //call done function to check wether your mixture worked or not
+  checkDone(answer) //call done function to check wether your mixture worked or not
   return answer
 }
 
-function done(answer){ //once the done button is clicked checks win/loss
+function checkDone(answer){ //once the done button is clicked checks win/loss
   if (answer == null){
-    document.getElementById("overlay").style.display = "block";
     document.getElementById("message").innerHTML = `You didn't make anything lethal`;    
   }
   
   else{
-    // alert(`Congrats! Score: ${score}`)
-    document.getElementById("overlay").style.display = "block";
     document.getElementById("message").innerHTML = `You made ${answer}! Add it to your new mix list?`;
     document.getElementById("yes").innerHTML = `Yes`
     document.getElementById("no").innerHTML = `No`
@@ -88,28 +104,6 @@ function done(answer){ //once the done button is clicked checks win/loss
 function playAgain() { //reloads the page for a new game
   document.location.reload();
 }
-
-
-
-// const str = sendInput.value
-
-// const options = {
-//   method: 'post',
-//   headers: {
-//     'Content-Type': 'application/json'
-//   },
-//   body: JSON.stringify({ data: str })
-// }
-// // Query the /send-data route with fetch
-// fetch('/mixes', options)
-//   .then(function(res){
-//     return res.json()
-//   }).then(function(json){
-//     // Handle the response and display the data received
-//     showMix.innerHTML = json.data
-//   }).catch(function(err) {
-//     console.log(err.message)
-//   })
 
 
 checkSelect()

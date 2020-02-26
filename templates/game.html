@@ -11,8 +11,21 @@
     <a href="#" class="w3-bar-item w3-button elts" id='sodium' data-points=100>Sodium </a>
     <a href="#" class="w3-bar-item w3-button elts" id='chlorine' data-points=100>Chlorine </a>
     <button class="doneBtn"> Done </button>
-  </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+    <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id='message'></p>
+        <div id='choice'>
+          <button id='yes'></button>
+          <button id='no'></button>
+        </div>
+        <button id='replay'>Play Again</button>
+      </div>
 
+    </div>
+  </div>
 
   <h1 class='title'>Don't Mix That!</h1>
   
@@ -22,11 +35,5 @@
 
   </div>
   <div id="overlay">
-    <h2 id='message'> </h2>
-    <div id='choice'>
-      <button id='yes'></button>
-      <button id='no'></button>
-    </div>
-    <button id='replay'>Play Again</button>
   </div>
 {% endblock %}
