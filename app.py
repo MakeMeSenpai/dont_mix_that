@@ -37,34 +37,71 @@ app = Flask(__name__)
 app.config.from_object(Config)
 
 
-""" test routes"""
-@app.route('/test')
+
+########################################### Tester Routes #####################################################
+@app.route('/test/test')
 def test():
     # Test - tests combination concept
     return test_concept()
 
-@app.route('/mix')
+@app.route('/test/mix')
 def mix():
     #Mix - tests mongo
     recipes = recs.find()
     ingredient = dontmixthat.find()
     return render_template('mix.html', ingredients=ingredient, recipes=recipes)
 
-@app.route('/book') # methods=['POST'])
+@app.route('/test/book') # methods=['POST'])
 def book():
     #Book - tests our recipies, (should be cleared every run)
     recipes = recs.find()
     return render_template('book.html', recipes=recipes)
 
-@app.route('/chars')
+@app.route('/test/chars')
 def chars():
     #Char - tests characters
     users = use.find()
     chars = characters.find()
     return render_template('chars.html', characters = chars, users=users)
 
-############################################################################################################
 
+
+############################################# Main Routes #####################################################
+@app.route('/')
+# @auth.login_required
+def index():
+    #Character selection
+    #users = use.find() --> #no longer a need for users, 
+    return render_template('index.html') #, users=users) --> #change to align with html
+
+@app.route('/play', methods=['GET', 'POST'])
+# @auth.login_required
+def play():
+    #Play  --> #talk to front end about forms play.html, conform to javascript, then implement mongo to 
+    #  to ensure that both implimentations work. 
+    # choices = ["salt", "water", "dirt", "bleach", "lean"]
+    # form = PlayForm()
+    # if form.validate_on_submit():
+    #     cards = [form.card1._value(),form.card2._value()]
+    #     cards.sort()
+    #     cards = ",".join(cards).lower()
+    #     print(cards)
+    #     recipe = recs.find_one(filter={"combo":cards})
+    #     if recipe:
+    #         print("Success") # add user unlocked value equal to recipe if not in unlocked
+    #         return redirect(url_for("home"))
+    return render_template('play.html')#, choices=choices) --> #conforming to javascript
+
+@app.route('/recipes')
+# @auth.login_required
+def recipes():
+    #recipes
+    users = use.find()
+    return render_template('recipes.html', users=users)
+
+
+
+########################################### Stretch Routes ######################################################
 @auth.verify_password #verifies that the username and password match
 def verify_password(username, password):
     user = use.find_one(filter={"username":username})
@@ -77,8 +114,8 @@ def verify_password(username, password):
 def hash_pw(password):
     return generate_password_hash(password)    
 
-"""our main routes"""
-@app.route('/', methods=['GET', 'POST'])
+
+@app.route('/stretch/login', methods=['GET', 'POST'])
 def login():
     #Login
     form = LoginForm()
@@ -90,57 +127,35 @@ def login():
     #else render login page   
     return render_template('login.html', title='Sign In', form=form)
 
-@app.route('/home')
+@app.route('/stretch/home')
 # @auth.login_required #requires you to log in before you can see this page
 def home():
     #Home
     users = use.find()
     return render_template('home.html', users=users)
 
-@app.route('/play', methods=['GET', 'POST'])
-# @auth.login_required
-def play(): #make forms for /play
-    # talk to front end about forms play.html
-    #Play
-    choices = ["salt", "water", "dirt", "bleach", "lean"]
-    form = PlayForm()
-    if form.validate_on_submit():
-        cards = [form.card1._value(),form.card2._value()]
-        cards.sort()
-        cards = ",".join(cards).lower()
-        print(cards)
-        recipe = recs.find_one(filter={"combo":cards})
-        if recipe:
-            print("Success") # add user unlocked value equal to recipe if not in unlocked
-            return redirect(url_for("home"))
-    return render_template('play.html', choices=choices)
-
-@app.route('/trade')
+@app.route('/stretch/trade')
 # @auth.login_required
 def trade():
     #Trade - Comming Soon
     return render_template('trade.html')
 
-@app.route('/profile')
+@app.route('/stretch/profile')
 # @auth.login_required
 def profile():
     #Profile
     users = use.find()
-    return render_template('profile.html', users=users)
+    return render_template('profile.html', users=users)    
 
-@app.route('/deck')
+@app.route('/stretch/deck')
 # @auth.login_required
 def deck():
     #Deck
     users = use.find()
     return render_template('deck.html', users=users)
 
-@app.route('/recipes')
-# @auth.login_required
-def recipes():
-    #recipes
-    users = use.find()
-    return render_template('recipes.html', users=users)
 
+
+# runs flask if ran with terminal command $python3 app.py
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
