@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <div class="w3-sidebar w3-bar-block w3-card sidebar">
+    <h3 class="w3-bar-item">Menu</h3>
+    <a href="#" class="w3-bar-item w3-button elts" id='bleach' class="elts" data-points=10>Bleach </a>
+    <a href="#" class="w3-bar-item w3-button elts" id='vinegar' data-points=50>Vinegar </a>
+    <a href="#" class="w3-bar-item w3-button elts" id='ammonia' data-points=100>Ammonia </a>
+    <a href="#" class="w3-bar-item w3-button elts" id='alcohol' data-points=100>Rubbing Alcohol </a>
+    <a href="#" class="w3-bar-item w3-button elts" id='hydrogenperoxide' data-points=100>Hydrogen Peroxide </a>
+    <a href="#" class="w3-bar-item w3-button elts" id='sodium' data-points=100>Sodium </a>
+    <a href="#" class="w3-bar-item w3-button elts" id='chlorine' data-points=100>Chlorine </a>
+    <p id='alertfull'></p>
+    <button class="doneBtn"> Done </button>
+    <button id="showMixes"> See your mixes </button>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+    <!-- Modal content -->
+      <div class="modal-content" id='modalContent'>
+        <span class="close">&times;</span>
+        <p id='message'></p>
+        <div id='choice'>
+          <button id='yes'></button>
+          <button id='no'></button>
+        </div>
+        <button id='replay'>Play Again</button>
+      </div>
+
+    </div>
+  </div>
+
+  <h1 class='title'>Don't Mix That!</h1>
+
+  <div style="margin-right:25%">
+    <img class='character' src='static/images/dontmixthat-alchemist.png'height='600' width="auto" alt='alchemist'>
+    <img class='pot' src='static/images/dontmixthat-cauldron.png' height='500' width="auto" alt='pot'>
+
+  </div>
+
+  <div id="overlay">
+  </div>
+
+  <!--demo links-->
+  <h3><a href="/">Go Back!</a></h3>
+{% endblock %}

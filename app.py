@@ -64,6 +64,13 @@ def chars():
     chars = characters.find()
     return render_template('chars.html', characters = chars, users=users)
 
+@app.route('/test/recipes')
+# @auth.login_required
+def recipes():
+    #recipes
+    users = use.find()
+    return render_template('recipes.html', users=users)
+
 
 
 ############################################# Main Routes #####################################################
@@ -74,30 +81,9 @@ def index():
     #users = use.find() --> #no longer a need for users, 
     return render_template('index.html') #, users=users) --> #change to align with html
 
-@app.route('/play', methods=['GET', 'POST'])
-# @auth.login_required
-def play():
-    #Play  --> #talk to front end about forms play.html, conform to javascript, then implement mongo to 
-    #  to ensure that both implimentations work. 
-    # choices = ["salt", "water", "dirt", "bleach", "lean"]
-    # form = PlayForm()
-    # if form.validate_on_submit():
-    #     cards = [form.card1._value(),form.card2._value()]
-    #     cards.sort()
-    #     cards = ",".join(cards).lower()
-    #     print(cards)
-    #     recipe = recs.find_one(filter={"combo":cards})
-    #     if recipe:
-    #         print("Success") # add user unlocked value equal to recipe if not in unlocked
-    #         return redirect(url_for("home"))
-    return render_template('play.html')#, choices=choices) --> #conforming to javascript
-
-@app.route('/recipes')
-# @auth.login_required
-def recipes():
-    #recipes
-    users = use.find()
-    return render_template('recipes.html', users=users)
+@app.route('/game')
+def game():
+  return render_template('game.html')
 
 
 
@@ -134,6 +120,24 @@ def home():
     users = use.find()
     return render_template('home.html', users=users)
 
+# @app.route('/play', methods=['GET', 'POST'])
+# # @auth.login_required
+# def play():
+#     #Play  --> #talk to front end about forms play.html, conform to javascript, then implement mongo to 
+#     #  to ensure that both implimentations work. 
+#     # choices = ["salt", "water", "dirt", "bleach", "lean"]
+#     # form = PlayForm()
+#     # if form.validate_on_submit():
+#     #     cards = [form.card1._value(),form.card2._value()]
+#     #     cards.sort()
+#     #     cards = ",".join(cards).lower()
+#     #     print(cards)
+#     #     recipe = recs.find_one(filter={"combo":cards})
+#     #     if recipe:
+#     #         print("Success") # add user unlocked value equal to recipe if not in unlocked
+#     #         return redirect(url_for("home"))
+#     return render_template('play.html')#, choices=choices) --> #conforming to javascript
+
 @app.route('/stretch/trade')
 # @auth.login_required
 def trade():
@@ -153,7 +157,6 @@ def deck():
     #Deck
     users = use.find()
     return render_template('deck.html', users=users)
-
 
 
 # runs flask if ran with terminal command $python3 app.py
