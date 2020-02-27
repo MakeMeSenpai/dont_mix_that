@@ -1,6 +1,6 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, render_template, request, redirect, url_for
-from flask_httpauth import HTTPBasicAuth
+# from flask_httpauth import HTTPBasicAuth
 from config import Config
 from random import randint
 from test import test_concept
@@ -32,7 +32,7 @@ dontmixthat = db.dontmixthat
 recs = db.recipes
 
 
-auth = HTTPBasicAuth()
+# auth = HTTPBasicAuth()
 app = Flask(__name__)
 app.config.from_object(Config)
 
@@ -102,17 +102,17 @@ def recipes():
 
 
 ########################################### Stretch Routes ######################################################
-@auth.verify_password #verifies that the username and password match
-def verify_password(username, password):
-    user = use.find_one(filter={"username":username})
-    p_hash = generate_password_hash(password)
-    if user: #if user can be found then check password
-        return check_password_hash(p_hash, user.password)
-    return False
+# @auth.verify_password #verifies that the username and password match
+# def verify_password(username, password):
+#     user = use.find_one(filter={"username":username})
+#     p_hash = generate_password_hash(password)
+#     if user: #if user can be found then check password
+#         return check_password_hash(p_hash, user.password)
+#     return False
 
-@auth.hash_password #hashes and protects our users passwords
-def hash_pw(password):
-    return generate_password_hash(password)    
+# @auth.hash_password #hashes and protects our users passwords
+# def hash_pw(password):
+#     return generate_password_hash(password)    
 
 
 @app.route('/stretch/login', methods=['GET', 'POST'])
