@@ -5,15 +5,14 @@ const yes_add = document.getElementById('yes')
 const no_add = document.getElementById('no')
 const showMix = document.getElementById('showMixes')
 const modal = document.getElementById("myModal");
+const modalContent = document.getElementById("modalContent");
 const alertfull = document.getElementById("alertfull");
 // Get the <cancelBtn> element that closes the modal
 let cancelBtn = document.getElementsByClassName("close")[0];
-
 let mix = [];
 let answer;
 let userdata;
 getUserData();
-console.log()
 let recipeBook = {  //all the chemicals that can be formed with the given recipies
   'saltwater': 'saltwater', 
   'alcoholbleach': 'Chlorform',
@@ -22,7 +21,6 @@ let recipeBook = {  //all the chemicals that can be formed with the given recipi
   'hydrogenperoxidevinegar': 'Peracetic Acid',
   'sodiumchlorine': 'Salt'
 }
-
 
 // showMix.addEventListener('click', displayMix)
 doneBtn.addEventListener('click', showModal)
@@ -70,13 +68,21 @@ showMix.addEventListener('click', displayMix)
 // }else{
 //   body.style.backgroundImage = "url(static/images/background-witch.jpeg)";
 // }
+
+//displays the mixtures the user has made so far
 function displayMix(){ 
   console.log('howdy')
-  document.getElementById("message").innerHTML = `${JSON.stringify(userdata.mix[0])}`;
-  
+  // let mixData = JSON.stringify(userdata.mix)
+  let mixData = userdata.mix //array of the user mixed data
+  console.log(mixData)
+  mixData.forEach((elt) => {
+    let para = document.createElement("P");
+    para.innerText = `${elt}`;
+    // document.body.appendChild(para);
+    modalContent.appendChild(para);
+  })
   modal.style.display = "block";
 }
-
 
 function getUserData() {
   if (localStorage.getItem("don't_mix_that")) {
@@ -95,14 +101,6 @@ function addLocal(){
   // Save to localStorage
   localStorage.setItem("don't_mix_that", json)
 }
-
-// function displayMix(){
-//   console.log('########mixes#######')
-//   console.log(userdata.mix)
-//   console.log(JSON.stringify(userdata.mix[0]))
-//   console.log(JSON.stringify({data: userdata.mix[0] }))
-//   showMix.innerHTML = JSON.stringify(userdata.mix[0]); 
-// }
 
 //Displays a modal for the user after the game is done
 function showModal(){ 
@@ -142,5 +140,3 @@ function playAgain() { //reloads the page for a new getAnswer
   modal.style.display = "none"; //hide the modal
   alertfull.innerHTML = "" //deletes the alert message from the selection bar
 }
-
-
