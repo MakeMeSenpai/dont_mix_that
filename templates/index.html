@@ -1,43 +1,123 @@
 {% extends 'base.html' %}
-<style>
-.bg {
-  background-image: url('static/images/tempbg.jpg');
-}
-.logofont {
-  font-family: Noteworthy, Verdana, Arial, sans-serif;
-  font-size: 50px;
-  font-weight: bold;
-  color: #FFFFFF;
-}
-.character{
-  margin-top: 4em;
-  margin-left: 4em;
-}
-.character2{
-  margin-top: 4em;
-  margin-left: 3em;
-}
-.character3{
-  margin-top: 4em;
-  margin-left: 2em;
-}
-.character4{
-  margin-top: 4em;
-  margin-left: 2em;
-}
-</style>
+
 {% block content %}
+
+<script language="javascript" type="text/javascript">
+    const SETTINGS = 'SETTINGS'
+  let settings = {}
+
+  const body = document.querySelector('body')
+
+  body.addEventListener('click', function(e) {
+    if (e.target.matches('.character-link')) {
+      // e.preventDefault()
+      console.log(e.target.dataset.type)
+      body.classList.remove('alchemist')
+      body.classList.remove('madscientist')
+      body.classList.remove('witch')
+      body.classList.remove('chef')
+      body.classList.add(e.target.dataset.type)
+      settings.character = e.target.dataset.type
+      saveSettings()
+    }
+  })
+
+  function saveSettings() {
+    // write to localstorage
+    localStorage.setItem(SETTINGS, JSON.stringify(settings))
+  }
+
+  function getSettings() {
+    // fetch from localstorage
+    const s = localStorage.getItem(SETTINGS)
+    if (s === null) {
+      // set defaults
+    } else {
+      settings = JSON.parse(s)
+    }
+    body.classList.add(settings.character)
+  }
+
+  getSettings()
+
+
+</script>
+
 <br>
 <br>
 <center>
-<font size="8">Don't Mix That!</font>
+<font size="8" color='white'>Don't Mix That!</font>
 <br>
-<font size="7">Choose your character:</font>
+<font size="7" color='white'>Choose your character to start game:</font>
+<p>
+        This Javascript Example will change the background image of<br />
+        HTML Div Tag onclick event.
+</p>
+    <div id="div1">
+
+    </div>
+    <br />
+    <input type="button" value="Change Background Image" onclick="changeDivImage()" />
 <br>
 <br>
-  <a href='/' title="baby"><img class= 'character' src="static/images/dontmixthat-alchemist.png" height = '400' width= 'auto' alt="alchemist"</a>
-  <a href='/' title="Selena"><img class= 'character2' src="static/images/dontmixthat-madscientist.png" height = '500' width= 'auto' alt="madscientist"</a>
-  <a href='/' title="Astra"><img class= 'character3' src="static/images/dontmixthat-witch.png" height = '500' width= 'auto' alt="witch"</a>
-  <a href='/' title="Cheffery"><img class= 'character4' src="static/images/dontmixthat-chef.png" height = '500' width= 'auto' alt="Chef"</a>
+
+  <a href='/game' title="baby" class="">
+    <img data-type="alchemist" class='character character-link' src="static/images/dontmixthat-alchemist.png" height = '400' width= 'auto' alt="alchemist">
+  </a>
+  <a href='/game' title="Selena" class="">
+    <img data-type="madscientist" class='character2 character-link' src="static/images/dontmixthat-madscientist.png" height = '500' width= 'auto' alt="madscientist">
+  </a>
+  <a href='/game' title="Astra" class="">
+    <img data-type="witch" class= 'character3 character-link' src="static/images/dontmixthat-witch.png" height = '500' width= 'auto' alt="witch">
+  </a>
+  <a href='/game' title="Cheffery" class="">
+    <img data-type="chef" class= 'character4 character-link' src="static/images/dontmixthat-chef.png" height = '500' width= 'auto' alt="Chef">
+  </a>
+
+
+  <style>
+
+    body.chef {
+      /* background: linear-gradient(#66cc00 0%, #b3ff66 51%,  #ccff99 75%);
+      background-image: url("static/images/background-chef.jpeg");
+      background-size: cover; */
+    }
+  
+    body.witch {
+      /* background: linear-gradient(#cc0066 0%, #b3ff66 51%,  #ff99cc 75%);
+      background-image: url("static/images/background-witch.jpeg");
+      background-size: cover; */
+    }
+  
+    body.alchemist {
+      /* background: linear-gradient(#0066cc 0%, #ffb366 51%,  #99ffcc 75%);
+      background-image: url("static/images/background-alchemist.jpeg");
+      background-size: cover; */
+    }
+  
+    body.madscientist {
+      /* background: linear-gradient(#66cc00 0%, #b366ff 51%,  #ffcc99 75%);
+      background-image: url("static/images/background-scientist.jpeg");
+      background-size: cover; */
+    }
+  
+    /* body.chef div.pot {
+      background-image: url(chef-pot.png);
+    }
+  
+    body.witch div.pot {
+      background-image: url(witch-pot.png);
+    }
+  
+    body.alchemist div.pot {
+      background-image: url(alchemist-pot.png);
+    } */
+  
+  
+  
+  </style>
+  
   </center>
+
+
 {% endblock %}
