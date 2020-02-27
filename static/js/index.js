@@ -23,10 +23,12 @@ let recipeBook = {  //all the chemicals that can be formed with the given recipi
   'sodiumchlorine': 'Salt'
 }
 
-// doneBtn.addEventListener('click', done)
+
+// showMix.addEventListener('click', displayMix)
 doneBtn.addEventListener('click', showModal)
 replay.addEventListener('click', playAgain)
 yes_add.addEventListener('click', addLocal)
+
 // When the user clicks on <cancelBtn> (x), close the modal
 cancelBtn.addEventListener('click', function() {
   modal.style.display = "none";
@@ -51,6 +53,8 @@ all_elts.forEach(elt => elt.addEventListener('click', () => {
       console.log(mix)
     }))
 
+showMix.addEventListener('click', displayMix)
+
 // let background = JSON.parse(localStorage.getItem("SETTINGS"))
 // //changing background of the getAnswer based on the characters
 // console.log(background.character)
@@ -66,6 +70,13 @@ all_elts.forEach(elt => elt.addEventListener('click', () => {
 // }else{
 //   body.style.backgroundImage = "url(static/images/background-witch.jpeg)";
 // }
+function displayMix(){ 
+  console.log('howdy')
+  document.getElementById("message").innerHTML = `${JSON.stringify(userdata.mix[0])}`;
+  
+  modal.style.display = "block";
+}
+
 
 function getUserData() {
   if (localStorage.getItem("don't_mix_that")) {
@@ -85,13 +96,13 @@ function addLocal(){
   localStorage.setItem("don't_mix_that", json)
 }
 
-function displayMix(){
-  console.log('########mixes#######')
-  console.log(userdata.mix)
-  console.log(JSON.stringify(userdata.mix[0]))
-  console.log(JSON.stringify({data: userdata.mix[0] }))
-  showMix.innerHTML = JSON.stringify(userdata.mix[0]); 
-}
+// function displayMix(){
+//   console.log('########mixes#######')
+//   console.log(userdata.mix)
+//   console.log(JSON.stringify(userdata.mix[0]))
+//   console.log(JSON.stringify({data: userdata.mix[0] }))
+//   showMix.innerHTML = JSON.stringify(userdata.mix[0]); 
+// }
 
 //Displays a modal for the user after the game is done
 function showModal(){ 
@@ -130,7 +141,6 @@ function playAgain() { //reloads the page for a new getAnswer
   })
   modal.style.display = "none"; //hide the modal
   alertfull.innerHTML = "" //deletes the alert message from the selection bar
-
 }
 
-displayMix()
+
