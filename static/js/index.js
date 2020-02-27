@@ -53,21 +53,21 @@ all_elts.forEach(elt => elt.addEventListener('click', () => {
 
 showMix.addEventListener('click', displayMix)
 
-// let background = JSON.parse(localStorage.getItem("SETTINGS"))
-// //changing background of the getAnswer based on the characters
-// console.log(background.character)
-// if (background.character == 'chef'){
-//   body.style.backgroundImage = "url(static/images/background-chef.jpeg)";
+let background = JSON.parse(localStorage.getItem("SETTINGS"))
+//changing background of the getAnswer based on the characters
+console.log(background.character)
+if (background.character == 'chef'){
+  document.body.style.backgroundImage = "url(static/images/background-chef.jpeg)";
 
-// }else if (background.character == 'madscientist'){
-//   body.style.backgroundImage = "url(static/images/background-scientist.jpeg)";
+}else if (background.character == 'madscientist'){
+  document.body.style.backgroundImage = "url(static/images/background-scientist.jpeg)";
 
-// }else if (background.character == 'alchemist'){
-//   body.style.backgroundImage = "url(static/images/background-alchemist.jpeg)";
+}else if (background.character == 'alchemist'){
+  document.body.style.backgroundImage = "url(static/images/background-alchemist.jpeg)";
 
-// }else{
-//   body.style.backgroundImage = "url(static/images/background-witch.jpeg)";
-// }
+}else{
+  document.body.style.backgroundImage = "url(static/images/background-witch.jpeg)";
+}
 
 //displays the mixtures the user has made so far
 function displayMix(){ 
