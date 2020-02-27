@@ -1,3 +1,0 @@
-Python==3.7.6
-Flask==1.1.1
-Werkzeu==0.15.6

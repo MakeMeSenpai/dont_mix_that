@@ -1,59 +1,36 @@
-let elt1 = document.getElementById('elt1')
-let elt2 = document.getElementById('elt2')
-let elt3 = document.getElementById('elt3')
+let all_elts = Array.from(document.querySelectorAll("a.elts"))
+const doneBtn = document.querySelector('button.doneBtn')
+const replay = document.getElementById('replay')
+let score = 0
+doneBtn.addEventListener('click', done)
+replay.addEventListener('click', playAgain)
 
-console.log(elt1.style.backgroundColor)
-function el1() {
-    elt1.style.backgroundColor = "blue";
-    // document.getElementById("demo1").style.visibility="hidden";
-  }
-  
-  function el2() {
-    elt2.style.backgroundColor = "blue";
-  }
-
-  function el3() {
-    elt3.style.backgroundColor = "blue";
-  }
-  console.log('**************')
-  const style = getComputedStyle(elt1)
-//   console.log(style)
-  console.log(elt1.style.backgroundColor)
-
-  function change_color(){
-    if (elt1.style.backgroundColor == 'blue'){
-        console.log("don't mix that");
-        alert("game over")
-      }
-      else{
-        console.log("no");
-        //   alert('no')
-      }
+function check(){
+  all_elts.forEach(elt => elt.addEventListener('click', () => {
+    console.log(elt)
+    elt.style.backgroundColor = 'pink'; 
+    score += parseInt(elt.getAttribute('data-points'))
+    console.log(score)
+  }))
   }
 
-// console.log(elts)
-// function allowDrop(ev) {
-//     ev.preventDefault();
-//   }
-  
-//   function drag(ev) {
-//     ev.dataTransfer.setData("Text", ev.target.id);
-//     var elts = ev.target.id
-//     console.log(elts)
-//     ev.style.visibility="hidden";
-//   }
-  
-//   function drop(ev) {
-//     ev.preventDefault();
-//     console.log(ev.target)
-//     elt1.style.visibility="hidden";
-  
-    // elt2.style.visibility="hidden";
-    // elt3.style.visibility="hidden";
-    // var data = ev.dataTransfer.getData("Text");
-    // ev.target.appendChild(document.getElementById(data));
-//   }
+function done(){
+  if (score >= 100){
+    // alert(`Congrats! Score: ${score}`)
+    document.getElementById("overlay").style.display = "block";
+    document.getElementById("message").innerHTML = "You win!";
 
-setInterval(change_color(), 10);
-// setInterval()
-//   change_color()
+
+  }
+  else{
+    // alert(`You lose! Score: ${score}`)
+    document.getElementById("overlay").style.display = "block";
+    document.getElementById("message").innerHTML = "You lose!";
+  }
+}
+
+function playAgain() {
+  document.location.reload();
+}
+
+check()
