@@ -5,18 +5,15 @@ const yes_add = document.getElementById('yes')
 const no_add = document.getElementById('no')
 const showMix = document.getElementById('showMixes')
 const modal = document.getElementById("myModal");
-const body = document.querySelector('body')
-// Get the <span> element that closes the modal
-let span = document.getElementsByClassName("close")[0];
+const alertfull = document.getElementById("alertfull");
+// Get the <cancelBtn> element that closes the modal
+let cancelBtn = document.getElementsByClassName("close")[0];
 
 let mix = [];
 let answer;
 let userdata;
-// doneBtn.addEventListener('click', done)
-doneBtn.addEventListener('click', doneButn)
-replay.addEventListener('click', playAgain)
-yes_add.addEventListener('click', addLocal)
-
+getUserData();
+console.log()
 let recipeBook = {  //all the chemicals that can be formed with the given recipies
   'saltwater': 'saltwater', 
   'alcoholbleach': 'Chlorform',
@@ -26,38 +23,63 @@ let recipeBook = {  //all the chemicals that can be formed with the given recipi
   'sodiumchlorine': 'Salt'
 }
 
-let background = JSON.parse(localStorage.getItem("SETTINGS"))
-//changing background of the getAnswer based on the characters
-console.log(background.character)
-if (background.character == 'chef'){
-  body.style.backgroundImage = "url(static/images/background-chef.jpeg)";
+// doneBtn.addEventListener('click', done)
+doneBtn.addEventListener('click', showModal)
+replay.addEventListener('click', playAgain)
+yes_add.addEventListener('click', addLocal)
+// When the user clicks on <cancelBtn> (x), close the modal
+cancelBtn.addEventListener('click', function() {
+  modal.style.display = "none";
+})
+// When the user clicks anywhere outside of the modal, close it
+window.addEventListener('click', function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+})
+//when you click an element, change opacity
+all_elts.forEach(elt => elt.addEventListener('click', () => {
+      console.log(elt)
+      if(mix.length < 2){
+        elt.style.opacity = 0.2;  
+        mix.push(elt.getAttribute('id'))
+      }
+      else{
+        // alert("don't do that")
+        alertfull.innerHTML = "You can't click morethan two elements"
+      }
+      console.log(mix)
+    }))
 
-}else if (background.character == 'madscientist'){
-  body.style.backgroundImage = "url(static/images/background-scientist.jpeg)";
+// let background = JSON.parse(localStorage.getItem("SETTINGS"))
+// //changing background of the getAnswer based on the characters
+// console.log(background.character)
+// if (background.character == 'chef'){
+//   body.style.backgroundImage = "url(static/images/background-chef.jpeg)";
 
-}else if (background.character == 'alchemist'){
-  body.style.backgroundImage = "url(static/images/background-alchemist.jpeg)";
+// }else if (background.character == 'madscientist'){
+//   body.style.backgroundImage = "url(static/images/background-scientist.jpeg)";
 
-}else{
-  body.style.backgroundImage = "url(static/images/background-witch.jpeg)";
-}
+// }else if (background.character == 'alchemist'){
+//   body.style.backgroundImage = "url(static/images/background-alchemist.jpeg)";
 
+// }else{
+//   body.style.backgroundImage = "url(static/images/background-witch.jpeg)";
+// }
 
-
-if (localStorage.getItem("don't_mix_that")) {
-  userdata = JSON.parse(localStorage.getItem("don't_mix_that"))
-} else {
-  userdata = { //new mix holds the new recipies the user makes
-    mix: []
+function getUserData() {
+  if (localStorage.getItem("don't_mix_that")) {
+    userdata = JSON.parse(localStorage.getItem("don't_mix_that"))
+  } else {
+    userdata = { //new mix holds the new recipies the user makes
+      mix : [] //empty out the mixed array
+    }
   }
 }
 
-function addLocal(){ //adds it to local storage
-  console.log(userdata)
-  console.log(answer)
+//adds it to local storage
+function addLocal(){ 
   userdata.mix.push(answer)
-  console.log(userdata)
-  // Convert to JSON
   const json = JSON.stringify(userdata)
   // Save to localStorage
   localStorage.setItem("don't_mix_that", json)
@@ -71,39 +93,18 @@ function displayMix(){
   showMix.innerHTML = JSON.stringify(userdata.mix[0]); 
 }
 
-function checkSelect(){ //checks wether the element is clicked and adds it into an array
-  all_elts.forEach(elt => elt.addEventListener('click', () => {
-    console.log(elt)
-    elt.style.opacity = 0.2;  //when you click an element, change opacity
-    mix.push(elt.getAttribute('id'))
-    console.log(mix)
-  }))
-}
-
-function doneButn(){ //when the done button is clicked
+//Displays a modal for the user after the game is done
+function showModal(){ 
   modal.style.display = "block";
  getAnswer()
 }
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-
+//will have the getAnswer logic 
 function getAnswer(){
-  //will have the getAnswer logic 
-  const ab = mix[0] + mix[1] //changes the array index to mixed strings
-  const ba = mix[1] + mix[0] //changes the array index to mixed strings
-  //checks wether either of these two mixes exist in the recipie book
-  answer = recipeBook[ab] === undefined ? recipeBook[ba] : recipeBook[ab]
-  console.log(answer)
+  const mixOne = mix[0] + mix[1] //changes the array index to mixed strings
+  const mixTwo = mix[1] + mix[0] //changes the array index to mixed strings
+  //checks wether either of these two mixes exist in the recipe book
+  answer = recipeBook[mixOne] === undefined ? recipeBook[mixTwo] : recipeBook[mixOne]
   checkDone(answer) //call done function to check wether your mixture worked or not
   return answer
 }
@@ -121,9 +122,15 @@ function checkDone(answer){ //once the done button is clicked checks win/loss
 }
 
 function playAgain() { //reloads the page for a new getAnswer
-  document.location.reload();
+  //clear local storage
+  //don't reload the page
+  mix = []; //empty out the mix array
+  all_elts.forEach(function (elt) { //change the element opacity to 1
+    elt.style.opacity = 1;  
+  })
+  modal.style.display = "none"; //hide the modal
+  alertfull.innerHTML = "" //deletes the alert message from the selection bar
+
 }
 
-
-checkSelect()
 displayMix()
