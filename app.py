@@ -5,7 +5,7 @@ from config import Config
 from random import randint
 from test import test_concept
 
-#wtf man
+#wtf man 
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired
