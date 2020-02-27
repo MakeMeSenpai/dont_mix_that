@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Your Discoveries!</h1>
+    {% for unlocked in users.unlocked %}
+        <h2>{{ unlocked }}</h2>
+    {% endfor %}
+    <h3><a href="/play">Go Back!</a></h3>
+{% endblock %}

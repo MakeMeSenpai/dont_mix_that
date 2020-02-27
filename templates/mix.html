@@ -1,0 +1,15 @@
+<h1>Dont Mix That!</h1> 
+
+<h2>Ingredients</h2>
+{% for ingredient in ingredients %}
+    <h3>{{ ingredient.name }} ^{{ ingredient.rank }}</h3>
+    <img src="{{ ingredient.img }}"></img>
+    <p>{{ ingredient.description }}</p>
+{% endfor %}
+
+<h2>Recipes</h2>
+{% for recipe in recipes %}
+    <h3>{{ recipe.name }}</h3>
+    <img src="{{ recipe.img }}"></img>
+    <p>{{ recipe.description }}</p>
+{% endfor %}
