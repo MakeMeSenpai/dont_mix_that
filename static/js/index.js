@@ -1,4 +1,4 @@
-let all_elts = Array.from(document.querySelectorAll("a.elts"))
+let all_elts = Array.from(document.querySelectorAll("div.elts"))
 const doneBtn = document.querySelector('button.doneBtn')
 const replay = document.getElementById('replay')
 const yes_add = document.getElementById('yes')
@@ -57,16 +57,26 @@ let background = JSON.parse(localStorage.getItem("SETTINGS"))
 //changing background of the getAnswer based on the characters
 console.log(background.character)
 if (background.character == 'chef'){
-  document.body.style.backgroundImage = "url(static/images/background-chef.jpeg)";
+  document.body.style.backgroundImage = "url(static/images/background-assembled-chef.jpeg)";
 
 }else if (background.character == 'madscientist'){
-  document.body.style.backgroundImage = "url(static/images/background-scientist.jpeg)";
+  document.body.style.backgroundImage = "url(static/images/background-assembled-scientist.jpeg)";
 
 }else if (background.character == 'alchemist'){
-  document.body.style.backgroundImage = "url(static/images/background-alchemist.jpeg)";
+  document.body.style.backgroundImage = "url(static/images/background-assembled-alchemist.jpeg)";
 
 }else{
-  document.body.style.backgroundImage = "url(static/images/background-witch.jpeg)";
+  document.body.style.backgroundImage = "url(static/images/background-assembled-witch.jpeg)";
+}
+
+// opens the menu bar
+function openRightMenu() {
+  document.getElementById("rightMenu").style.display = "block";
+}
+
+// closes the menu bar
+function closeRightMenu() {
+  document.getElementById("rightMenu").style.display = "none";
 }
 
 //displays the mixtures the user has made so far
@@ -139,4 +149,5 @@ function playAgain() { //reloads the page for a new getAnswer
   })
   modal.style.display = "none"; //hide the modal
   alertfull.innerHTML = "" //deletes the alert message from the selection bar
+  closeRightMenu()
 }
