@@ -5,10 +5,13 @@ const yes_add = document.getElementById('yes')
 const no_add = document.getElementById('no')
 const showMix = document.getElementById('showMixes')
 const modal = document.getElementById("myModal");
+const mixModal = document.getElementById("myModal2");
 const modalContent = document.getElementById("modalContent");
+const mixModalContent = document.getElementById("mixmodalContent");
 const alertfull = document.getElementById("alertfull");
 // Get the <cancelBtn> element that closes the modal
 let cancelBtn = document.getElementsByClassName("close")[0];
+let cancelBtnMix = document.getElementsByClassName("closeMix")[0];
 let mix = [];
 let answer;
 let userdata;
@@ -26,15 +29,19 @@ let recipeBook = {  //all the chemicals that can be formed with the given recipi
 doneBtn.addEventListener('click', showModal)
 replay.addEventListener('click', playAgain)
 yes_add.addEventListener('click', addLocal)
-
+showMix.addEventListener('click', displayMix)
 // When the user clicks on <cancelBtn> (x), close the modal
 cancelBtn.addEventListener('click', function() {
   modal.style.display = "none";
 })
+cancelBtnMix.addEventListener('click', function() {
+  mixModal.style.display = "none";
+})
 // When the user clicks anywhere outside of the modal, close it
 window.addEventListener('click', function(event) {
-  if (event.target == modal) {
+  if (event.target == modal || event.target == mixModal) {
     modal.style.display = "none";
+    mixModal.style.display = "none";
   }
 })
 //when you click an element, change opacity
@@ -51,7 +58,7 @@ all_elts.forEach(elt => elt.addEventListener('click', () => {
       console.log(mix)
     }))
 
-showMix.addEventListener('click', displayMix)
+
 
 let background = JSON.parse(localStorage.getItem("SETTINGS"))
 //changing background of the getAnswer based on the characters
@@ -81,17 +88,17 @@ function closeRightMenu() {
 
 //displays the mixtures the user has made so far
 function displayMix(){ 
-  console.log('howdy')
   // let mixData = JSON.stringify(userdata.mix)
   let mixData = userdata.mix //array of the user mixed data
-  console.log(mixData)
+  while (mixModalContent.hasChildNodes()) {  //clears the modal content
+    mixModalContent.removeChild(mixModalContent.firstChild); //to remove duplicates
+  }
   mixData.forEach((elt) => {
     let para = document.createElement("P");
     para.innerText = `${elt}`;
-    // document.body.appendChild(para);
-    modalContent.appendChild(para);
+    mixModalContent.appendChild(para);  
   })
-  modal.style.display = "block";
+  mixModal.style.display = "block";
 }
 
 function getUserData() {
@@ -106,10 +113,17 @@ function getUserData() {
 
 //adds it to local storage
 function addLocal(){ 
-  userdata.mix.push(answer)
-  const json = JSON.stringify(userdata)
-  // Save to localStorage
-  localStorage.setItem("don't_mix_that", json)
+  if (userdata.mix.includes(answer)){
+    console.log("don't add")
+  }
+  else {
+    console.log('add')
+    userdata.mix.push(answer)
+    const json = JSON.stringify(userdata)
+    // Save to localStorage
+    localStorage.setItem("don't_mix_that", json)
+  }
+  
 }
 
 //Displays a modal for the user after the game is done

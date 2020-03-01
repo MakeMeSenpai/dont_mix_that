@@ -52,9 +52,9 @@ h2 {
   padding-left: 2em;
 }
 
-/* .elts{
-  background-color: yellow;
-} */
+.elts{
+ padding-left: 4em;
+}
 
 #overlay {
   position: fixed; /* Sit on top of the page content */
