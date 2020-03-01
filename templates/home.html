@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+#This is the html for the homepage!
+{% block content %}
+  <h1>Welcome Back, {{ users.name }}!</h1>
+  <!-- will be on the side like play page -->
+  <h2>Character</h2> 
+  <h3>{{ users.character }}</h3>
+  <h2><a href="/play">Play</a></h2>
+  <h2><a href="/trade">Trade</a></h2>
+  <h2><a href="/profile">Profile</a></h2>
+  <h3><a href="/login">Log out</a></h3>
+{% endblock %}
