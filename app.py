@@ -5,7 +5,7 @@ from config import Config
 from random import randint
 from test import test_concept
 
-#wtf man
+#wtf man 
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired
@@ -81,11 +81,84 @@ def index():
     #users = use.find() --> #no longer a need for users, 
     return render_template('index.html') #, users=users) --> #change to align with html
 
-
-
 @app.route('/game')
 def game():
   return render_template('game.html')
 
+
+
+########################################### Stretch Routes ######################################################
+# @auth.verify_password #verifies that the username and password match
+# def verify_password(username, password):
+#     user = use.find_one(filter={"username":username})
+#     p_hash = generate_password_hash(password)
+#     if user: #if user can be found then check password
+#         return check_password_hash(p_hash, user.password)
+#     return False
+
+# @auth.hash_password #hashes and protects our users passwords
+# def hash_pw(password):
+#     return generate_password_hash(password)    
+
+
+@app.route('/stretch/login', methods=['GET', 'POST'])
+def login():
+    #Login
+    form = LoginForm()
+    if form.validate_on_submit(): #checks that input follows forms rules
+        if verify_password(form.username._value(), form.password._value()): #checks if password and username match
+        #question? how to get info from form to python?
+            return redirect(url_for('home'))
+            #question? how to get user info threwout app after they login?
+    #else render login page   
+    return render_template('login.html', title='Sign In', form=form)
+
+@app.route('/stretch/home')
+# @auth.login_required #requires you to log in before you can see this page
+def home():
+    #Home
+    users = use.find()
+    return render_template('home.html', users=users)
+
+# @app.route('/play', methods=['GET', 'POST'])
+# # @auth.login_required
+# def play():
+#     #Play  --> #talk to front end about forms play.html, conform to javascript, then implement mongo to 
+#     #  to ensure that both implimentations work. 
+#     # choices = ["salt", "water", "dirt", "bleach", "lean"]
+#     # form = PlayForm()
+#     # if form.validate_on_submit():
+#     #     cards = [form.card1._value(),form.card2._value()]
+#     #     cards.sort()
+#     #     cards = ",".join(cards).lower()
+#     #     print(cards)
+#     #     recipe = recs.find_one(filter={"combo":cards})
+#     #     if recipe:
+#     #         print("Success") # add user unlocked value equal to recipe if not in unlocked
+#     #         return redirect(url_for("home"))
+#     return render_template('play.html')#, choices=choices) --> #conforming to javascript
+
+@app.route('/stretch/trade')
+# @auth.login_required
+def trade():
+    #Trade - Comming Soon
+    return render_template('trade.html')
+
+@app.route('/stretch/profile')
+# @auth.login_required
+def profile():
+    #Profile
+    users = use.find()
+    return render_template('profile.html', users=users)    
+
+@app.route('/stretch/deck')
+# @auth.login_required
+def deck():
+    #Deck
+    users = use.find()
+    return render_template('deck.html', users=users)
+
+
+# runs flask if ran with terminal command $python3 app.py
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
