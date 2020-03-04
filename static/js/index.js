@@ -17,7 +17,7 @@ let answer;
 let userdata;
 getUserData();
 let recipeBook = {  //all the chemicals that can be formed with the given recipies
-  'saltwater': 'saltwater', 
+  'saltwater': 'saltwater',
   'alcoholbleach': 'Chlorform',
   'bleachvinegar': 'Toxic Chlorine Gas',
   'ammoniableach': 'Toxic Chloramine Vapors',
@@ -48,7 +48,7 @@ window.addEventListener('click', function(event) {
 all_elts.forEach(elt => elt.addEventListener('click', () => {
       console.log(elt)
       if(mix.length < 2){
-        elt.style.opacity = 0.2;  
+        elt.style.opacity = 0.2;
         mix.push(elt.getAttribute('id'))
       }
       else{
@@ -65,16 +65,25 @@ let background = JSON.parse(localStorage.getItem("SETTINGS"))
 console.log(background.character)
 if (background.character == 'chef'){
   document.body.style.backgroundImage = "url(static/images/background-assembled-chef.jpeg)";
+  document.body.style.backgroundRepeat = "no-repeat"
+  document.body.style.backgroundSize = "cover"
 
 }else if (background.character == 'madscientist'){
   document.body.style.backgroundImage = "url(static/images/background-assembled-scientist.jpeg)";
+  document.body.style.backgroundRepeat = "no-repeat"
+  document.body.style.backgroundSize = "cover"
 
 }else if (background.character == 'alchemist'){
   document.body.style.backgroundImage = "url(static/images/background-assembled-alchemist.jpeg)";
+  document.body.style.backgroundRepeat = "no-repeat"
+  document.body.style.backgroundSize = "cover"
 
 }else{
   document.body.style.backgroundImage = "url(static/images/background-assembled-witch.jpeg)";
+  document.body.style.backgroundRepeat = "no-repeat"
+  document.body.style.backgroundSize = "cover"
 }
+
 
 // opens the menu bar
 function openRightMenu() {
@@ -87,7 +96,7 @@ function closeRightMenu() {
 }
 
 //displays the mixtures the user has made so far
-function displayMix(){ 
+function displayMix(){
   // let mixData = JSON.stringify(userdata.mix)
   let mixData = userdata.mix //array of the user mixed data
   while (mixModalContent.hasChildNodes()) {  //clears the modal content
@@ -96,7 +105,7 @@ function displayMix(){
   mixData.forEach((elt) => {
     let para = document.createElement("P");
     para.innerText = `${elt}`;
-    mixModalContent.appendChild(para);  
+    mixModalContent.appendChild(para);
   })
   mixModal.style.display = "block";
 }
@@ -112,7 +121,7 @@ function getUserData() {
 }
 
 //adds it to local storage
-function addLocal(){ 
+function addLocal(){
   if (userdata.mix.includes(answer)){
     console.log("don't add")
   }
@@ -123,16 +132,16 @@ function addLocal(){
     // Save to localStorage
     localStorage.setItem("don't_mix_that", json)
   }
-  
+
 }
 
 //Displays a modal for the user after the game is done
-function showModal(){ 
+function showModal(){
   modal.style.display = "block";
  getAnswer()
 }
 
-//will have the getAnswer logic 
+//will have the getAnswer logic
 function getAnswer(){
   const mixOne = mix[0] + mix[1] //changes the array index to mixed strings
   const mixTwo = mix[1] + mix[0] //changes the array index to mixed strings
@@ -144,9 +153,9 @@ function getAnswer(){
 
 function checkDone(answer){ //once the done button is clicked checks win/loss
   if (answer == null){
-    document.getElementById("message").innerHTML = `You didn't make anything lethal`;    
+    document.getElementById("message").innerHTML = `You didn't make anything lethal`;
   }
-  
+
   else{
     document.getElementById("message").innerHTML = `You made ${answer}! Add it to your new mix list?`;
     document.getElementById("yes").innerHTML = `Yes`
@@ -159,7 +168,7 @@ function playAgain() { //reloads the page for a new getAnswer
   //don't reload the page
   mix = []; //empty out the mix array
   all_elts.forEach(function (elt) { //change the element opacity to 1
-    elt.style.opacity = 1;  
+    elt.style.opacity = 1;
   })
   modal.style.display = "none"; //hide the modal
   alertfull.innerHTML = "" //deletes the alert message from the selection bar
