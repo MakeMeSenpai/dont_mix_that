@@ -53,7 +53,7 @@ all_elts.forEach(elt => elt.addEventListener('click', () => {
       }
       else{
         // alert("don't do that")
-        alertfull.innerHTML = "You can't click morethan two elements"
+        alertfull.innerHTML = "You can't click more than two elements"
       }
       console.log(mix)
     }))
