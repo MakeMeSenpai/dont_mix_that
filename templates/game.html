@@ -1,69 +1,68 @@
 {% extends 'base.html' %}
 {% block content %}
-  <div class="w3-teal">
-    <button class="w3-button w3-teal w3-xlarge w3-right" onclick="openRightMenu()">&#9776;</button>
-    <!-- <div class="w3-container">
-      <h1 class='title'>Don't Mix That!</h1>
-    </div> -->
-  </div>
-  <div class="w3-sidebar w3-bar-block w3-card sidebar w3-animate-right" style="display:none;right:0;" id="rightMenu">
-    <button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
-    <h3 class="w3-bar-item">Menu</h3>
+    <div class="w3-teal">
+        <button class="w3-button w3-teal w3-xlarge w3-right" onclick="openRightMenu()">&#9776;</button>
+        <!-- <div class="w3-container">
+            <h1 class='title'>Don't Mix That!</h1>
+        </div> -->
+    </div>
+    <div class="w3-sidebar w3-bar-block w3-card sidebar w3-animate-right" style="display:none;right:0;" id="rightMenu">
+        <button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
+        <h3 class="w3-bar-item">Menu</h3>
 
-    <div class='elts' id='bleach'>
-      <img src='static/images/items/item-bleach.png' alt='bleach' height='100' width='auto'>
-      <a href="#" class="w3-bar-item w3-button elts">Bleach </a>
-    </div>
-    <div class='elts' id='vinegar'>
-      <img src='static/images/items/item-vinegar.png' alt='vinegar' height='100' width='auto'>
-      <a href="#" class="w3-bar-item w3-button elts">Vinegar </a>
-    </div>
-    <div class='elts' id='ammonia'>
-      <img src='static/images/items/item-ammonia.png' alt='ammonia' height='100' width='auto'>
-      <a href="#" class="w3-bar-item w3-button elts">Ammonia </a>
-    </div>
-    <div class='elts' id='alcohol'>
-      <img src='static/images/items/item-rubbingalcohol.png' alt='alcohol' height='100' width='auto'>
-      <a href="#" class="w3-bar-item w3-button elts">Rubbing Alcohol </a>
-    </div>
-    <div class='elts' id='hydrogenperoxide'>
-      <img src='static/images/items/item-hydrogenperoxide.png' alt='hydrogen peroxide' height='100' width='auto'>
-      <a href="#" class="w3-bar-item w3-button elts" id='hydrogenperoxide'>Hydrogen Peroxide </a>
-    </div>
-
-    <!-- <a href="#" class="w3-bar-item w3-button elts" id='sodium'>Sodium </a>
-    <a href="#" class="w3-bar-item w3-button elts" id='chlorine'>Chlorine </a> -->
-    <p id='alertfull'></p>
-    <button class="doneBtn"> Done </button>
-    <button id="showMixes"> See your mixes </button>
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-    <!-- Modal content -->
-      <div class="modal-content" id='modalContent'>
-        <span class="close">&times;</span>
-        <p id='message'></p>
-        <div id='choice'>
-          <button id='yes'></button>
-          <button id='no'></button>
+        <div class='elts' id='bleach'>
+            <img src='static/images/items/item-bleach.png' alt='bleach' height='100' width='auto'>
+            <a href="#" class="w3-bar-item w3-button elts">Bleach </a>
         </div>
-        <button id='replay'>Play Again</button>
-      </div>
+        <div class='elts' id='vinegar'>
+            <img src='static/images/items/item-vinegar.png' alt='vinegar' height='100' width='auto'>
+            <a href="#" class="w3-bar-item w3-button elts">Vinegar </a>
+        </div>
+        <div class='elts' id='ammonia'>
+            <img src='static/images/items/item-ammonia.png' alt='ammonia' height='100' width='auto'>
+            <a href="#" class="w3-bar-item w3-button elts">Ammonia </a>
+        </div>
+        <div class='elts' id='alcohol'>
+            <img src='static/images/items/item-rubbingalcohol.png' alt='alcohol' height='100' width='auto'>
+            <a href="#" class="w3-bar-item w3-button elts">Rubbing Alcohol </a>
+        </div>
+        <div class='elts' id='hydrogenperoxide'>
+            <img src='static/images/items/item-hydrogenperoxide.png' alt='hydrogen peroxide' height='100' width='auto'>
+            <a href="#" class="w3-bar-item w3-button elts" id='hydrogenperoxide'>Hydrogen Peroxide </a>
+        </div>
 
+        <!-- <a href="#" class="w3-bar-item w3-button elts" id='sodium'>Sodium </a>
+        <a href="#" class="w3-bar-item w3-button elts" id='chlorine'>Chlorine </a> -->
+        <p id='alertfull'></p>
+        <button class="doneBtn"> Done </button>
+        <button id="showMixes"> See your mixes </button>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content" id='modalContent'>
+                <span class="close">&times;</span>
+                <p id='message'></p>
+                <div id='choice'>
+                    <button id='yes'></button>
+                    <button id='no'></button>
+                </div>
+                <button id='replay'>Play Again</button>
+            </div>
+        </div>
+
+        <div id='myModal2' class='modal'>
+            <div class='modal-content' id='mixmodalContent'>
+                <span class="closeMix">&times;</span>
+            </div>
+        </div>
     </div>
-    <div id='myModal2' class='modal'>
-      <div class='modal-content' id='mixmodalContent'>
-        <span class="closeMix">&times;</span>
-      </div>
+
+    <div style="margin-right:25%">
     </div>
 
-  </div>
-
-  <div style="margin-right:25%">
-
-
-  </div>
-  <div id="overlay">
-  </div>
+    <div id="overlay">
+    </div>
 
   <!--demo links-->
   <h3><a href="/">Go Back!</a></h3>
