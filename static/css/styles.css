@@ -1,7 +1,7 @@
 body {
     /* height: 1800px;
     background: linear-gradient(#0066cc 0%, #66b3ff 51%,  #99ccff 75%); */
-    font-family: Noteworthy, helvetica;
+    font-family: Tahoma, Geneva, sans-serif;
     font-size: 16px;
     background-color: blue;
     /* border: 2px solid black; */
@@ -187,4 +187,12 @@ h2 {
   width:100px;
   height:30px;
   background-image:url(static/images/BG/background-alchemist.jpeg);
+}
+
+.index-col{
+    background-color: white;
+    margin-top: 50px;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 50px;
 }
