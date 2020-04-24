@@ -4,86 +4,83 @@
 
 <script language="javascript" type="text/javascript">
     const SETTINGS = 'SETTINGS'
-  let settings = {}
+    let settings = {}
 
-  const body = document.querySelector('body')
+    const body = document.querySelector('body')
 
-  body.addEventListener('click', function(e) {
-    if (e.target.matches('.character-link')) {
-      // e.preventDefault()
-      console.log(e.target.dataset.type)
-      body.classList.remove('alchemist')
-      body.classList.remove('madscientist')
-      body.classList.remove('witch')
-      body.classList.remove('chef')
-      body.classList.add(e.target.dataset.type)
-      settings.character = e.target.dataset.type
-      saveSettings()
+    body.addEventListener('click', function(e) {
+        if (e.target.matches('.character-link')) {
+            // e.preventDefault()
+            console.log(e.target.dataset.type)
+            body.classList.remove('alchemist')
+            body.classList.remove('madscientist')
+            body.classList.remove('witch')
+            body.classList.remove('chef')
+            body.classList.add(e.target.dataset.type)
+            settings.character = e.target.dataset.type
+            saveSettings()
+        }
+    })
+
+    function saveSettings() {
+        // write to localstorage
+        localStorage.setItem(SETTINGS, JSON.stringify(settings))
     }
-  })
 
-  function saveSettings() {
-    // write to localstorage
-    localStorage.setItem(SETTINGS, JSON.stringify(settings))
-  }
-
-  function getSettings() {
-    // fetch from localstorage
-    const s = localStorage.getItem(SETTINGS)
-    if (s === null) {
-      // set defaults
-    } else {
-      settings = JSON.parse(s)
+    function getSettings() {
+        // fetch from localstorage
+        const s = localStorage.getItem(SETTINGS)
+        if (s === null) {
+            // set defaults
+        } else {
+            settings = JSON.parse(s)
+        }
+        body.classList.add(settings.character)
     }
-    body.classList.add(settings.character)
-  }
 
-  getSettings()
-
+    getSettings()
 
 </script>
 
 <br/>
+
 <center>
 <!-- <font size="8" color='white'>Don't Mix That!</font> -->
 <img class="logo" src="static/images/dontmixthat-logo.png" alt="Don't Mix That! Logo">
+
 <br>
+
 <font size="7" color='white'>Choose your character to start game:</font>
-  <br>
-  <a href='/game' title="Baby" class="">
+<br>
+<a href='/game' title="Baby" class="">
     <img data-type="alchemist" class='character character-link' src="static/images/dontmixthat-alchemist.png" height = '300' width= 'auto' alt="Alchemist">
-  </a>
-  <a href='/game' title="Selena" class="">
+</a>
+<a href='/game' title="Selena" class="">
     <img data-type="madscientist" class='character2 character-link' src="static/images/dontmixthat-madscientist.png" height = '400' width= 'auto' alt="Mad Scientist">
-  </a>
-  <a href='/game' title="Astra" class="">
+</a>
+<a href='/game' title="Astra" class="">
     <img data-type="witch" class= 'character3 character-link' src="static/images/dontmixthat-witch.png" height = '400' width= 'auto' alt="Witch">
-  </a>
-  <a href='/game' title="Cheffery" class="">
+</a>
+<a href='/game' title="Cheffery" class="">
     <img data-type="chef" class= 'character4 character-link' src="static/images/dontmixthat-chef.png" height = '400' width= 'auto' alt="Chef">
-  </a>
+</a>
 
-
-  <style>
-
+<style>
     body.chef {
       /* background: linear-gradient(#66cc00 0%, #b3ff66 51%,  #ccff99 75%);
       background-image: url("static/images/background-chef.jpeg");
       background-size: cover; */
     }
-
     body.witch {
       /* background: linear-gradient(#cc0066 0%, #b3ff66 51%,  #ff99cc 75%);
       background-image: url("static/images/background-witch.jpeg");
       background-size: cover; */
     }
-
     body.alchemist {
       /* background: linear-gradient(#0066cc 0%, #ffb366 51%,  #99ffcc 75%);
       background-image: url("static/images/background-alchemist.jpeg");
       background-size: cover; */
     }
-
     body.madscientist {
       /* background: linear-gradient(#66cc00 0%, #b366ff 51%,  #ffcc99 75%);
       background-image: url("static/images/background-scientist.jpeg");
@@ -101,12 +98,7 @@
     body.alchemist div.pot {
       background-image: url(alchemist-pot.png);
     } */
-
-
-
-  </style>
-
-  </center>
-
+</style>
+</center>
 
 {% endblock %}
