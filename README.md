@@ -7,6 +7,6 @@ Front End Lead: [@liyaSileshi](https://github.com/liyaSileshi) \
 GitMaster/ Back End Lead: [@makemesenpai](https://github.com/makemesenpai)
 
 :tea: Features :tea: \
-An educational game that teaches Chemistry.
+An educational game that teaches Chemistry. Check it out live one Heroku Here! https://dontmixthat.herokuapp.com/
 
 :open_file_folder: Resources :open_file_folder: 
